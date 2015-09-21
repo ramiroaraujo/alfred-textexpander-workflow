@@ -25,7 +25,7 @@ $snippets = (new C(glob(getenv('HOME') . '/Library/Application Support/TextExpan
         if (!$query) return true;
 
         return (new C(['abbreviation', 'label', 'plainText']))
-            ->some(function ($k) use ($s, $query) { return strpos($s[$k], $query) !== false; });
+            ->some(function ($k) use ($s, $query) { return mb_stripos($s[$k], $query) !== false; });
     });
 
 if ($snippets->isEmpty()) {
