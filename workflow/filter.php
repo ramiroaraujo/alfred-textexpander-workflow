@@ -1,43 +1,52 @@
 <?php
 require_once __DIR__ . "/vendor/autoload.php";
-use Alfred\Workflow;
 
-if ($argc < 2) exit;
+use Alfred\Workflow;
+use Cake\Collection\Collection as C;
+use CFPropertyList\CFPropertyList;
 
 $w = new Workflow();
-$query = $argv[1];
+$query = isset($argv[1]) ? trim($argv[1]) : false;
 
-//find files
-$find = $w->mdfind($query);
+//glob all textexpander files named group_...
+$snippets = (new C(glob(getenv('HOME') . '/Library/Application Support/TextExpander/Settings.textexpandersettings/group*.xml')))
+    //parse each plist
+    ->map(function ($file) {
+        return (new CFPropertyList($file))->toArray()['snippetPlists'];
+    })
+    //flatten result
+    ->unfold()
+    //filter out invalid snippets
+    ->filter(function ($s) {
+        return strlen($s['abbreviation']) > 0;
+    })
+    //if filter text provided, filter by it
+    ->filter(function ($s) use ($query) {
+        if (!$query) return true;
 
-//remove empty last one
-array_pop($find);
+        return (new C(['abbreviation', 'label', 'plainText']))
+            ->some(function ($k) use ($s, $query) { return strpos($s[$k], $query) !== false; });
+    });
 
-//check results
-if (count($find)) {
-    //build result array
-    $results = array_map(function ($file) {
-        return [
-            'uid' => $file,
-            'arg' => $file,
-            'title' => basename($file),
-            'subtitle' => $file,
-            'icon' => false,
-            'valid' => 'yes',
-            'autocomplete' => 'autocomplete'
-        ];
-    }, $find);
-} else {
-    //build not found msg
+if ($snippets->isEmpty()) {
+    //404 if collection is empty
     $results = [[
-        'uid' => '',
-        'arg' => '',
         'title' => '404 Not Found',
-        'subtitle' => '',
-        'icon' => false,
+        'icon'  => false,
         'valid' => 'yes',
-        'autocomplete' => ''
     ]];
+} else {
+    //build results array
+    $results = $snippets->map(function ($s) {
+        return [
+            'uid'      => $s['uuidString'],
+            'arg'      => $s['abbreviation'],
+            'title'    => $s['label'] ? $s['label'] : $s['abbreviation'],
+            'subtitle' => $s['abbreviation'],
+            'icon'     => false,
+            'valid'    => 'yes',
+        ];
+    })->toList();
 }
 
 //set results
@@ -45,3 +54,5 @@ $w->results = $results;
 
 //return alfred's xml
 echo $w->toXML();
+
+
