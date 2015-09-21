@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5cd567771ed781e51137135d26e2ae2",
+    "hash": "6a5026f26601f85fd96fec3aadd1a942",
     "packages": [
+        {
+            "name": "cakephp/collection",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/collection.git",
+                "reference": "5bfd9f0177d0222eaeb07699706a54cfee903f09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/collection/zipball/5bfd9f0177d0222eaeb07699706a54cfee903f09",
+                "reference": "5bfd9f0177d0222eaeb07699706a54cfee903f09",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Collection\\": "."
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "http://cakephp.org"
+                }
+            ],
+            "description": "Work easily with arrays and iterators by having a battery of utility traversal methods",
+            "time": "2015-09-20 01:52:46"
+        },
         {
             "name": "seld/jsonlint",
             "version": "1.3.1",

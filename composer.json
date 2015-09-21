@@ -13,7 +13,8 @@
     "vendor-dir": "workflow/vendor"
   },
   "require": {
-    "skyzyx/alfred-workflow-builder": "dev-master"
+    "skyzyx/alfred-workflow-builder": "dev-master",
+    "cakephp/collection": "3.*"
   },
   "require-dev": {
     "rodneyrehm/plist": "^2.0"
