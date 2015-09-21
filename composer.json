@@ -14,9 +14,7 @@
   },
   "require": {
     "skyzyx/alfred-workflow-builder": "dev-master",
-    "cakephp/collection": "3.*"
-  },
-  "require-dev": {
+    "cakephp/collection": "3.*",
     "rodneyrehm/plist": "^2.0"
   },
   "minimum-stability": "stable",

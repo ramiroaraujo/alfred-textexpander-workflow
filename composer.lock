@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6a5026f26601f85fd96fec3aadd1a942",
+    "hash": "689f4bf1e055b147f2caf5232ab9cca8",
     "packages": [
         {
             "name": "cakephp/collection",
@@ -41,6 +41,50 @@
             ],
             "description": "Work easily with arrays and iterators by having a battery of utility traversal methods",
             "time": "2015-09-20 01:52:46"
+        },
+        {
+            "name": "rodneyrehm/plist",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rodneyrehm/CFPropertyList.git",
+                "reference": "2ea0483806c989eb0518a767fa29a111bb29cb67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rodneyrehm/CFPropertyList/zipball/2ea0483806c989eb0518a767fa29a111bb29cb67",
+                "reference": "2ea0483806c989eb0518a767fa29a111bb29cb67",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "CFPropertyList": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Kruse",
+                    "email": "cjk@wwwtech.de"
+                },
+                {
+                    "name": "Rodney Rehm",
+                    "email": "mail+github@rodneyrehm.de"
+                }
+            ],
+            "description": "Library for reading and writing Apple's CFPropertyList (plist) files in XML as well as binary format.",
+            "homepage": "https://github.com/rodneyrehm/CFPropertyList",
+            "keywords": [
+                "plist"
+            ],
+            "time": "2015-01-28 23:18:19"
         },
         {
             "name": "seld/jsonlint",
@@ -236,52 +280,7 @@
             "time": "2015-08-27 06:45:45"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "rodneyrehm/plist",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rodneyrehm/CFPropertyList.git",
-                "reference": "2ea0483806c989eb0518a767fa29a111bb29cb67"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rodneyrehm/CFPropertyList/zipball/2ea0483806c989eb0518a767fa29a111bb29cb67",
-                "reference": "2ea0483806c989eb0518a767fa29a111bb29cb67",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CFPropertyList": "classes/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Kruse",
-                    "email": "cjk@wwwtech.de"
-                },
-                {
-                    "name": "Rodney Rehm",
-                    "email": "mail+github@rodneyrehm.de"
-                }
-            ],
-            "description": "Library for reading and writing Apple's CFPropertyList (plist) files in XML as well as binary format.",
-            "homepage": "https://github.com/rodneyrehm/CFPropertyList",
-            "keywords": [
-                "plist"
-            ],
-            "time": "2015-01-28 23:18:19"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
