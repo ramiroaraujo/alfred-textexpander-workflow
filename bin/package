@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -o braceexpand
+
+if [ ! -f workflow/info.plist ]; then
+    echo "No info.plist found. Please run bin/initialize first"
+    exit 1;
+fi
+
+composer install --no-dev --prefer-dist --optimize-autoloader
+
+# get bundle id
+bundle_id=`perl -0ne 'print $1 if /<key>bundleid<\/key>\s*<string>(.+?)<\/string>/ms' workflow/info.plist |  awk -F '.' '{print $NF}'`
+
+tmp_dir="/tmp/${bundle_id}"
+
+rm -rf "${tmp_dir}" > /dev/null 2>&1
+
+mkdir "${tmp_dir}"
+cp -r workflow/ "${tmp_dir}/"
+
+# replace xdebug php calls with regular OSX php
+perl -pi -e 's#XDEBUG.+?/usr/local/bin/php#/usr/bin/php#' "${tmp_dir}/info.plist"
+
+workflow_dir=`pwd`
+rm ${bundle_id}.alfredworkflow > /dev/null 2>&1
+
+cd "$tmp_dir" && zip -r -q "${workflow_dir}"/${bundle_id}.alfredworkflow . && cd -
+
+composer install --prefer-dist
+
+echo "Workflow file created: ${bundle_id}.alfredworkflow"
