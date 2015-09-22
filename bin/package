@@ -22,6 +22,10 @@ cp -r workflow/ "${tmp_dir}/"
 # replace xdebug php calls with regular OSX php
 perl -pi -e 's#XDEBUG.+?/usr/local/bin/php#/usr/bin/php#' "${tmp_dir}/info.plist"
 
+# replace baseDir for composer classmap
+perl -pi -e 's/\$baseDir = dirname\(dirname\(\$vendorDir\)\);/\$baseDir = dirname(\$vendorDir);/' "${tmp_dir}/vendor/composer/autoload_classmap.php"
+perl -pi -e "s#\$baseDir \. '/workflow#\$baseDir . '#g" "${tmp_dir}/vendor/composer/autoload_classmap.php"
+
 workflow_dir=`pwd`
 rm ${bundle_id}.alfredworkflow > /dev/null 2>&1
 
